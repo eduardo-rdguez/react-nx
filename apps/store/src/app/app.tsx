@@ -1,6 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import styles from './app.module.scss';
 
+import { Header } from '@react-nx/store/ui-shared'
+
 import { getAllGames } from '../fake-api';
 import { Card } from '@material-ui/core';
 import { CardActionArea } from '@material-ui/core';
@@ -10,6 +12,8 @@ import { Typography } from '@material-ui/core';
 
 export function App() {
   return (
+    <>
+    <Header />
     <div className="container">
       <div className="games-layout">
         {getAllGames().map((g) => (
@@ -41,6 +45,7 @@ export function App() {
         ))}
       </div>
     </div>
+    </>
   );
 }
 
