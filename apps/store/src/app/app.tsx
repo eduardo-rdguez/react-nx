@@ -52,7 +52,7 @@ export function App() {
 
   return (
     <>
-      <Header />
+      <Header title="Board Game Hoard"/>
       <div className="container">
         <div className="games-layout">
           {state.data.map((g) => (
