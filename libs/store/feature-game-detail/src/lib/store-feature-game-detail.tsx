@@ -8,6 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { CardMedia } from '@material-ui/core';
 import { formatRating } from '@react-nx/store/util-formatters';
+import { Game } from '@react-nx/api/util-interfaces';
 
 type TParams = { id: string };
 
@@ -17,10 +18,10 @@ export interface StoreFeatureGameDetailProps
 
 export const StoreFeatureGameDetail = (props: StoreFeatureGameDetailProps) => {
   const [state, setState] = useState<{
-    data: any;
+    data: Game;
     loadingState: 'success' | 'error' | 'loading';
   }>({
-    data: {},
+    data: {} as Game,
     loadingState: 'success',
   });
 
