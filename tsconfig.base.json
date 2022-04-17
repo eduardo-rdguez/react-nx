@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@react-nx/api/util-interfaces": [
+        "libs/api/util-interfaces/src/index.ts"
+      ],
       "@react-nx/store/feature-game-detail": [
         "libs/store/feature-game-detail/src/index.ts"
       ],
