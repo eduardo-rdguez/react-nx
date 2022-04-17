@@ -1,9 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { useEffect, useState } from 'react';
+
 import './app.scss';
 
 import { Header } from '@react-nx/store/ui-shared';
 
-import { getAllGames } from '../fake-api';
 import { Card } from '@material-ui/core';
 import { CardActionArea } from '@material-ui/core';
 import { CardContent } from '@material-ui/core';
@@ -18,13 +19,42 @@ import { StoreFeatureGameDetail } from '@react-nx/store/feature-game-detail';
 
 export function App() {
   const history = useHistory();
+  const [state, setState] = useState<{
+    data: any[];
+    loadingState: 'success' | 'error' | 'loading';
+  }>({
+    data: [],
+    loadingState: 'success',
+  });
+
+  useEffect(() => {
+    setState({
+      ...state,
+      loadingState: 'loading',
+    });
+    fetch('/api/games')
+      .then((res) => res.json())
+      .then((res) => {
+        setState({
+          ...state,
+          data: res,
+          loadingState: 'success',
+        });
+      })
+      .catch((err) => {
+        setState({
+          ...state,
+          loadingState: 'error',
+        });
+      });
+  }, []);
 
   return (
     <>
       <Header />
       <div className="container">
         <div className="games-layout">
-          {getAllGames().map((g) => (
+          {state.data.map((g) => (
             <Card
               key={g.id}
               className="game-card"
