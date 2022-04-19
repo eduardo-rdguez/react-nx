@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from './app';
 
-function mockFetch(data: any) {
+function mockFetch(data: Game[]) {
   return jest.fn().mockImplementation(() => {
     return Promise.resolve({
       ok: true,
@@ -26,7 +26,7 @@ describe('App', () => {
     );
 
     const element = findByTestId(baseElement, 'app-container');
-    expect(baseElement).toBeTruthy();
+    expect(element).toBeTruthy();
   });
 
   it('should have a greeting as the title', () => {

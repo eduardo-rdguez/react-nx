@@ -29,24 +29,24 @@ export function App() {
   });
 
   useEffect(() => {
-    setState({
-      ...state,
+    setState((s) => ({
+      ...s,
       loadingState: 'loading',
-    });
+    }));
     fetch('/api/games')
       .then((res) => res.json())
       .then((res) => {
-        setState({
-          ...state,
+        setState((s) => ({
+          ...s,
           data: res,
           loadingState: 'success',
-        });
+        }));
       })
-      .catch((err) => {
-        setState({
-          ...state,
+      .catch((_) => {
+        setState((s) => ({
+          ...s,
           loadingState: 'error',
-        });
+        }));
       });
   }, []);
 
@@ -93,7 +93,9 @@ export function App() {
         </div>
       </div>
 
-      <Route path="/game/:id" component={StoreFeatureGameDetail} />
+      <Route path="/game/:id">
+        <StoreFeatureGameDetail />
+      </Route>
     </>
   );
 }
